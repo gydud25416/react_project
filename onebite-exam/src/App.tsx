@@ -1,11 +1,35 @@
+import { toast, Toaster } from "sonner";
 import "./App.css";
 import { Button } from "./components/ui/button";
+import { Input } from "./components/ui/input";
+import { Textarea } from "./components/ui/textarea";
 import { cn } from "./lib/utils";
 function App() {
   const isActive = true;
   return (
-    <div>
-      <Button>버튼</Button>
+    <div className="p-5">
+      <Toaster />
+
+      <Textarea />
+
+      <Input placeholder="입력 ..." />
+
+      <Button
+        onClick={() => {
+          toast("토스트 메시지", {
+            position: "top-center",
+          });
+        }}
+      >
+        버튼!
+      </Button>
+
+      {/* variant: 버튼 속성 */}
+      <Button variant={"destructive"}>버튼</Button>
+      <Button variant={"ghost"}>버튼</Button>
+      <Button variant={"link"}>버튼</Button>
+      <Button variant={"outline"}>버튼</Button>
+      <Button variant={"secondary"}>버튼</Button>
 
       <div
         className={cn(
