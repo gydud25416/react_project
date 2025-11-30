@@ -1,25 +1,39 @@
 import { create } from "zustand";
-import { combine, subscribeWithSelector } from "zustand/middleware";
+import {
+  combine,
+  subscribeWithSelector,
+  persist,
+  createJSONStorage,
+} from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 export const useCountStore = create(
-  subscribeWithSelector(
-    immer(
-      combine({ count: 0 }, (set, get) => ({
-        actions: {
-          increaseOne: () => {
-            set((state) => {
-              state.count += 1;
-            });
+  persist(
+    subscribeWithSelector(
+      immer(
+        combine({ count: 0 }, (set, get) => ({
+          actions: {
+            increaseOne: () => {
+              set((state) => {
+                state.count += 1;
+              });
+            },
+            decreaseOne: () => {
+              set((state) => {
+                state.count -= 1;
+              });
+            },
           },
-          decreaseOne: () => {
-            set((state) => {
-              state.count -= 1;
-            });
-          },
-        },
-      })),
+        })),
+      ),
     ),
+    {
+      name: "countStore",
+      partialize: (store) => ({
+        count: store.count,
+      }),
+      storage: createJSONStorage(() => sessionStorage),
+    },
   ),
 );
 
