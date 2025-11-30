@@ -1,5 +1,5 @@
 import { useDecreaseCount, useIncreaseCount } from "@/store/count";
-import { Button } from "../button";
+import { Button } from "../ui/button";
 
 export default function Controller() {
   const increase = useIncreaseCount();
