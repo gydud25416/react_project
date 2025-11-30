@@ -1,24 +1,37 @@
 import { create } from "zustand";
-import { combine } from "zustand/middleware";
+import { combine, subscribeWithSelector } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 export const useCountStore = create(
-  immer(
-    combine({ count: 0 }, (set, get) => ({
-      actions: {
-        increaseOne: () => {
-          set((state) => {
-            state.count += 1;
-          });
+  subscribeWithSelector(
+    immer(
+      combine({ count: 0 }, (set, get) => ({
+        actions: {
+          increaseOne: () => {
+            set((state) => {
+              state.count += 1;
+            });
+          },
+          decreaseOne: () => {
+            set((state) => {
+              state.count -= 1;
+            });
+          },
         },
-        decreaseOne: () => {
-          set((state) => {
-            state.count -= 1;
-          });
-        },
-      },
-    })),
+      })),
+    ),
   ),
+);
+
+useCountStore.subscribe(
+  (store) => store.count,
+  (count, pervCount) => {
+    // Listner 함수
+    console.log(count, pervCount);
+
+    const store = useCountStore.getState(); // 현재 count store값을 반환해준다.
+    // useCountStore.setState((store)=>({}))
+  },
 );
 
 // export const useCountStore = create<Store>((set, get) => ({
