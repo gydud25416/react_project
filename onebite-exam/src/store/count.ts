@@ -1,22 +1,24 @@
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 
 export const useCountStore = create(
-  combine({ count: 0 }, (set, get) => ({
-    actions: {
-      increaseOne: () => {
-        get();
-        set((state) => ({
-          count: state.count + 1,
-        }));
+  immer(
+    combine({ count: 0 }, (set, get) => ({
+      actions: {
+        increaseOne: () => {
+          set((state) => {
+            state.count += 1;
+          });
+        },
+        decreaseOne: () => {
+          set((state) => {
+            state.count -= 1;
+          });
+        },
       },
-      decreaseOne: () => {
-        set((state) => ({
-          count: state.count - 1,
-        }));
-      },
-    },
-  })),
+    })),
+  ),
 );
 
 // export const useCountStore = create<Store>((set, get) => ({
