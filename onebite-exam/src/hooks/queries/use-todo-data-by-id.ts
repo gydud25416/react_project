@@ -7,6 +7,7 @@ export function useTodoDataById(id: number) {
     queryKey: ["todos", id],
 
     staleTime: 5000,
+    gcTime: 5000,
 
     // refetchInterval: 1000,
     // refetchOnMount: false,
