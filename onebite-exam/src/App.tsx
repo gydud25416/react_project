@@ -5,6 +5,7 @@ import SignInPage from "./pages/sign-in-page";
 import SignUpPage from "./pages/sign-up-page";
 import CounterPage from "./pages/counter-page";
 import TodoListPage from "./pages/todo-list-page";
+import TodoDetailPage from "./pages/todo-detail-page";
 
 // 공통 레이아웃
 function AuthLayout() {
@@ -19,7 +20,8 @@ function AuthLayout() {
 function App() {
   return (
     <Routes>
-      <Route path="todolist" element={<TodoListPage />} />
+      <Route path="/todolist" element={<TodoListPage />} />
+      <Route path="/todolist/:id" element={<TodoDetailPage />} />
       <Route path="/counter" element={<CounterPage />} />
       <Route path="/" element={<IndexPage />} />
       <Route element={<AuthLayout />}>
