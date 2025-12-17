@@ -6,33 +6,13 @@
       "isDone": true
     },
     {
-      "id": "2",
-      "content": "Todo 2",
-      "isDone": true
-    },
-    {
-      "id": "3",
-      "content": "Todo 3",
-      "isDone": false
-    },
-    {
-      "id": "98e3",
+      "id": "b983",
       "content": "123",
       "isDone": false
     },
     {
-      "id": "7aa0",
+      "id": "78a9",
       "content": "234",
-      "isDone": false
-    },
-    {
-      "id": "db67",
-      "content": "345",
-      "isDone": false
-    },
-    {
-      "id": "924e",
-      "content": "345",
       "isDone": false
     }
   ]
